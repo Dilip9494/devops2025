@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login and Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      width: 350px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .form-container {
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #004999;
+    }
+    .toggle-btns {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .toggle-btns button {
+      flex: 1;
+      border-radius: 0;
+      background: #ddd;
+      color: #333;
+      font-weight: bold;
+    }
+    .toggle-btns button.active {
+      background-color: #0066cc;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="toggle-btns">
+      <button id="loginBtn" class="active" onclick="showLogin()">Login</button>
+      <button id="signupBtn" onclick="showSignup()">Sign Up</button>
+    </div>
+    <div class="form-container">
+      <form id="loginForm">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="loginUsername" required />
+        <input type="password" placeholder="Password" id="loginPassword" required />
+        <button type="submit">Log In</button>
+      </form>
+      <form id="signupForm" style="display:none;">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Username" id="signupUsername" required />
+        <input type="email" placeholder="Email" id="signupEmail" required />
+        <input type="password" placeholder="Password" id="signupPassword" required />
+        <input type="password" placeholder="Confirm Password" id="signupPasswordConfirm" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    function showLogin() {
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      loginBtn.classList.add('active');
+      signupBtn.classList.remove('active');
+    }
+
+    function showSignup() {
+      signupForm.style.display = 'block';
+      loginForm.style.display = 'none';
+      signupBtn.classList.add('active');
+      loginBtn.classList.remove('active');
+    }
+
+    loginForm.onsubmit = function(e) {
+      e.preventDefault();
+      alert('Login submitted:\nUsername: ' + loginUsername.value);
+      // Add real login logic here
+    }
+
+    signupForm.onsubmit = function(e) {
+      e.preventDefault();
+      if (signupPassword.value !== signupPasswordConfirm.value) {
+        alert("Passwords do not match!");
+        return;
+      }
+      alert('Sign Up submitted:\nUsername: ' + signupUsername.value + '\nEmail: ' + signupEmail.value);
+      // Add real signup logic here
+    }
+  </script>
+</body>
+</html>
